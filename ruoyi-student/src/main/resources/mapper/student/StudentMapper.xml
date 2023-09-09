@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.student.mapper.StudentMapper">
+    
+    <resultMap type="Student" id="StudentResult">
+        <result property="stuId"    column="stu_id"    />
+        <result property="stuName"    column="stu_name"    />
+        <result property="stuUpi"    column="stu_upi"    />
+        <result property="stuAuid"    column="stu_auid"    />
+        <result property="stuEmail"    column="stu_email"    />
+        <result property="stuCurrentOverseas"    column="stu_current_overseas"    />
+        <result property="stuCurrentOverseasBacknz"    column="stu_current_overseas_backnz"    />
+        <result property="stuCitizen"    column="stu_citizen"    />
+        <result property="stuCitizenVisa"    column="stu_citizen_visa"    />
+        <result property="stuEnrolmentDetail"    column="stu_enrolment_detail"    />
+        <result property="stuEducation"    column="stu_education"    />
+        <result property="stuTaorgta"    column="stu_taORgta"    />
+        <result property="stuTaortgaContracts"    column="stu_taORtga_contracts"    />
+        <result property="stuMaximumWorktime"    column="stu_maximum_worktime"    />
+        <result property="stuGrade"    column="stu_grade"    />
+        <result property="stuWhyQualify"    column="stu_why_qualify"    />
+        <result property="stuExperience"    column="stu_experience"    />
+        <result property="stuApplicationStatus"    column="stu_application_status"    />
+        <result property="stuStudyed"    column="stu_studyed"    />
+        <result property="stuCv"    column="stu_cv"    />
+        <result property="stuAr"    column="stu_ar"    />
+    </resultMap>
+
+    <sql id="selectStudentVo">
+        select stu_id, stu_name, stu_upi, stu_auid, stu_email, stu_current_overseas, stu_current_overseas_backnz, stu_citizen, stu_citizen_visa, stu_enrolment_detail, stu_education, stu_taORgta, stu_taORtga_contracts, stu_maximum_worktime, stu_grade, stu_why_qualify, stu_experience, stu_application_status, stu_studyed, stu_cv, stu_ar from student
+    </sql>
+
+    <select id="selectStudentList" parameterType="Student" resultMap="StudentResult">
+        <include refid="selectStudentVo"/>
+        <where>  
+            <if test="stuName != null  and stuName != ''"> and stu_name like concat('%', #{stuName}, '%')</if>
+            <if test="stuUpi != null  and stuUpi != ''"> and stu_upi = #{stuUpi}</if>
+            <if test="stuAuid != null "> and stu_auid = #{stuAuid}</if>
+            <if test="stuEmail != null  and stuEmail != ''"> and stu_email = #{stuEmail}</if>
+            <if test="stuCurrentOverseas != null  and stuCurrentOverseas != ''"> and stu_current_overseas = #{stuCurrentOverseas}</if>
+            <if test="stuCurrentOverseasBacknz != null  and stuCurrentOverseasBacknz != ''"> and stu_current_overseas_backnz = #{stuCurrentOverseasBacknz}</if>
+            <if test="stuCitizen != null  and stuCitizen != ''"> and stu_citizen = #{stuCitizen}</if>
+            <if test="stuCitizenVisa != null  and stuCitizenVisa != ''"> and stu_citizen_visa = #{stuCitizenVisa}</if>
+            <if test="stuEnrolmentDetail != null  and stuEnrolmentDetail != ''"> and stu_enrolment_detail = #{stuEnrolmentDetail}</if>
+            <if test="stuEducation != null  and stuEducation != ''"> and stu_education = #{stuEducation}</if>
+            <if test="stuTaorgta != null  and stuTaorgta != ''"> and stu_taORgta = #{stuTaorgta}</if>
+            <if test="stuTaortgaContracts != null  and stuTaortgaContracts != ''"> and stu_taORtga_contracts = #{stuTaortgaContracts}</if>
+            <if test="stuMaximumWorktime != null "> and stu_maximum_worktime = #{stuMaximumWorktime}</if>
+            <if test="stuGrade != null "> and stu_grade = #{stuGrade}</if>
+            <if test="stuWhyQualify != null  and stuWhyQualify != ''"> and stu_why_qualify = #{stuWhyQualify}</if>
+            <if test="stuExperience != null  and stuExperience != ''"> and stu_experience = #{stuExperience}</if>
+            <if test="stuApplicationStatus != null  and stuApplicationStatus != ''"> and stu_application_status = #{stuApplicationStatus}</if>
+            <if test="stuStudyed != null  and stuStudyed != ''"> and stu_studyed = #{stuStudyed}</if>
+            <if test="stuCv != null  and stuCv != ''"> and stu_cv = #{stuCv}</if>
+            <if test="stuAr != null  and stuAr != ''"> and stu_ar = #{stuAr}</if>
+        </where>
+    </select>
+    
+    <select id="selectStudentByStuId" parameterType="Long" resultMap="StudentResult">
+        <include refid="selectStudentVo"/>
+        where stu_id = #{stuId}
+    </select>
+        
+    <insert id="insertStudent" parameterType="Student">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stuId != null">stu_id,</if>
+            <if test="stuName != null and stuName != ''">stu_name,</if>
+            <if test="stuUpi != null and stuUpi != ''">stu_upi,</if>
+            <if test="stuAuid != null">stu_auid,</if>
+            <if test="stuEmail != null and stuEmail != ''">stu_email,</if>
+            <if test="stuCurrentOverseas != null">stu_current_overseas,</if>
+            <if test="stuCurrentOverseasBacknz != null">stu_current_overseas_backnz,</if>
+            <if test="stuCitizen != null">stu_citizen,</if>
+            <if test="stuCitizenVisa != null">stu_citizen_visa,</if>
+            <if test="stuEnrolmentDetail != null and stuEnrolmentDetail != ''">stu_enrolment_detail,</if>
+            <if test="stuEducation != null and stuEducation != ''">stu_education,</if>
+            <if test="stuTaorgta != null">stu_taORgta,</if>
+            <if test="stuTaortgaContracts != null and stuTaortgaContracts != ''">stu_taORtga_contracts,</if>
+            <if test="stuMaximumWorktime != null">stu_maximum_worktime,</if>
+            <if test="stuGrade != null">stu_grade,</if>
+            <if test="stuWhyQualify != null">stu_why_qualify,</if>
+            <if test="stuExperience != null">stu_experience,</if>
+            <if test="stuApplicationStatus != null">stu_application_status,</if>
+            <if test="stuStudyed != null and stuStudyed != ''">stu_studyed,</if>
+            <if test="stuCv != null">stu_cv,</if>
+            <if test="stuAr != null">stu_ar,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stuId != null">#{stuId},</if>
+            <if test="stuName != null and stuName != ''">#{stuName},</if>
+            <if test="stuUpi != null and stuUpi != ''">#{stuUpi},</if>
+            <if test="stuAuid != null">#{stuAuid},</if>
+            <if test="stuEmail != null and stuEmail != ''">#{stuEmail},</if>
+            <if test="stuCurrentOverseas != null">#{stuCurrentOverseas},</if>
+            <if test="stuCurrentOverseasBacknz != null">#{stuCurrentOverseasBacknz},</if>
+            <if test="stuCitizen != null">#{stuCitizen},</if>
+            <if test="stuCitizenVisa != null">#{stuCitizenVisa},</if>
+            <if test="stuEnrolmentDetail != null and stuEnrolmentDetail != ''">#{stuEnrolmentDetail},</if>
+            <if test="stuEducation != null and stuEducation != ''">#{stuEducation},</if>
+            <if test="stuTaorgta != null">#{stuTaorgta},</if>
+            <if test="stuTaortgaContracts != null and stuTaortgaContracts != ''">#{stuTaortgaContracts},</if>
+            <if test="stuMaximumWorktime != null">#{stuMaximumWorktime},</if>
+            <if test="stuGrade != null">#{stuGrade},</if>
+            <if test="stuWhyQualify != null">#{stuWhyQualify},</if>
+            <if test="stuExperience != null">#{stuExperience},</if>
+            <if test="stuApplicationStatus != null">#{stuApplicationStatus},</if>
+            <if test="stuStudyed != null and stuStudyed != ''">#{stuStudyed},</if>
+            <if test="stuCv != null">#{stuCv},</if>
+            <if test="stuAr != null">#{stuAr},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStudent" parameterType="Student">
+        update student
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="stuName != null and stuName != ''">stu_name = #{stuName},</if>
+            <if test="stuUpi != null and stuUpi != ''">stu_upi = #{stuUpi},</if>
+            <if test="stuAuid != null">stu_auid = #{stuAuid},</if>
+            <if test="stuEmail != null and stuEmail != ''">stu_email = #{stuEmail},</if>
+            <if test="stuCurrentOverseas != null">stu_current_overseas = #{stuCurrentOverseas},</if>
+            <if test="stuCurrentOverseasBacknz != null">stu_current_overseas_backnz = #{stuCurrentOverseasBacknz},</if>
+            <if test="stuCitizen != null">stu_citizen = #{stuCitizen},</if>
+            <if test="stuCitizenVisa != null">stu_citizen_visa = #{stuCitizenVisa},</if>
+            <if test="stuEnrolmentDetail != null and stuEnrolmentDetail != ''">stu_enrolment_detail = #{stuEnrolmentDetail},</if>
+            <if test="stuEducation != null and stuEducation != ''">stu_education = #{stuEducation},</if>
+            <if test="stuTaorgta != null">stu_taORgta = #{stuTaorgta},</if>
+            <if test="stuTaortgaContracts != null and stuTaortgaContracts != ''">stu_taORtga_contracts = #{stuTaortgaContracts},</if>
+            <if test="stuMaximumWorktime != null">stu_maximum_worktime = #{stuMaximumWorktime},</if>
+            <if test="stuGrade != null">stu_grade = #{stuGrade},</if>
+            <if test="stuWhyQualify != null">stu_why_qualify = #{stuWhyQualify},</if>
+            <if test="stuExperience != null">stu_experience = #{stuExperience},</if>
+            <if test="stuApplicationStatus != null">stu_application_status = #{stuApplicationStatus},</if>
+            <if test="stuStudyed != null and stuStudyed != ''">stu_studyed = #{stuStudyed},</if>
+            <if test="stuCv != null">stu_cv = #{stuCv},</if>
+            <if test="stuAr != null">stu_ar = #{stuAr},</if>
+        </trim>
+        where stu_id = #{stuId}
+    </update>
+
+    <delete id="deleteStudentByStuId" parameterType="Long">
+        delete from student where stu_id = #{stuId}
+    </delete>
+
+    <delete id="deleteStudentByStuIds" parameterType="String">
+        delete from student where stu_id in 
+        <foreach item="stuId" collection="array" open="(" separator="," close=")">
+            #{stuId}
+        </foreach>
+    </delete>
+</mapper>

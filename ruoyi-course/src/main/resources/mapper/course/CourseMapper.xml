@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.course.mapper.CourseMapper">
+    
+    <resultMap type="Course" id="CourseResult">
+        <result property="courId"    column="cour_id"    />
+        <result property="courCode"    column="cour_code"    />
+        <result property="courEsti"    column="cour_esti"    />
+        <result property="courCurrent"    column="cour_current"    />
+        <result property="courAvhours"    column="cour_avhours"    />
+        <result property="courNeedmarker"    column="cour_needmarker"    />
+        <result property="courNumass"    column="cour_numass"    />
+        <result property="courTypeass"    column="cour_typeass"    />
+        <result property="courMarkerhour"    column="cour_markerhour"    />
+        <result property="courTutorhour"    column="cour_tutorhour"    />
+        <result property="courMarkerrespon"    column="cour_markerrespon"    />
+        <result property="courPrenummarker"    column="cour_prenummarker"    />
+    </resultMap>
+
+    <sql id="selectCourseVo">
+        select cour_id, cour_code, cour_esti, cour_current, cour_avhours, cour_needmarker, cour_numass, cour_typeass, cour_markerhour, cour_tutorhour, cour_markerrespon, cour_prenummarker from course
+    </sql>
+
+    <select id="selectCourseList" parameterType="Course" resultMap="CourseResult">
+        <include refid="selectCourseVo"/>
+        <where>  
+            <if test="courCode != null  and courCode != ''"> and cour_code = #{courCode}</if>
+            <if test="courEsti != null "> and cour_esti = #{courEsti}</if>
+            <if test="courCurrent != null "> and cour_current = #{courCurrent}</if>
+            <if test="courAvhours != null "> and cour_avhours = #{courAvhours}</if>
+            <if test="courNeedmarker != null  and courNeedmarker != ''"> and cour_needmarker = #{courNeedmarker}</if>
+            <if test="courNumass != null "> and cour_numass = #{courNumass}</if>
+            <if test="courTypeass != null  and courTypeass != ''"> and cour_typeass = #{courTypeass}</if>
+            <if test="courMarkerhour != null "> and cour_markerhour = #{courMarkerhour}</if>
+            <if test="courTutorhour != null "> and cour_tutorhour = #{courTutorhour}</if>
+            <if test="courMarkerrespon != null  and courMarkerrespon != ''"> and cour_markerrespon = #{courMarkerrespon}</if>
+            <if test="courPrenummarker != null "> and cour_prenummarker = #{courPrenummarker}</if>
+        </where>
+    </select>
+    
+    <select id="selectCourseByCourId" parameterType="Long" resultMap="CourseResult">
+        <include refid="selectCourseVo"/>
+        where cour_id = #{courId}
+    </select>
+        
+    <insert id="insertCourse" parameterType="Course" useGeneratedKeys="true" keyProperty="courId">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="courCode != null and courCode != ''">cour_code,</if>
+            <if test="courEsti != null">cour_esti,</if>
+            <if test="courCurrent != null">cour_current,</if>
+            <if test="courAvhours != null">cour_avhours,</if>
+            <if test="courNeedmarker != null and courNeedmarker != ''">cour_needmarker,</if>
+            <if test="courNumass != null">cour_numass,</if>
+            <if test="courTypeass != null">cour_typeass,</if>
+            <if test="courMarkerhour != null">cour_markerhour,</if>
+            <if test="courTutorhour != null">cour_tutorhour,</if>
+            <if test="courMarkerrespon != null">cour_markerrespon,</if>
+            <if test="courPrenummarker != null">cour_prenummarker,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="courCode != null and courCode != ''">#{courCode},</if>
+            <if test="courEsti != null">#{courEsti},</if>
+            <if test="courCurrent != null">#{courCurrent},</if>
+            <if test="courAvhours != null">#{courAvhours},</if>
+            <if test="courNeedmarker != null and courNeedmarker != ''">#{courNeedmarker},</if>
+            <if test="courNumass != null">#{courNumass},</if>
+            <if test="courTypeass != null">#{courTypeass},</if>
+            <if test="courMarkerhour != null">#{courMarkerhour},</if>
+            <if test="courTutorhour != null">#{courTutorhour},</if>
+            <if test="courMarkerrespon != null">#{courMarkerrespon},</if>
+            <if test="courPrenummarker != null">#{courPrenummarker},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCourse" parameterType="Course">
+        update course
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="courCode != null and courCode != ''">cour_code = #{courCode},</if>
+            <if test="courEsti != null">cour_esti = #{courEsti},</if>
+            <if test="courCurrent != null">cour_current = #{courCurrent},</if>
+            <if test="courAvhours != null">cour_avhours = #{courAvhours},</if>
+            <if test="courNeedmarker != null and courNeedmarker != ''">cour_needmarker = #{courNeedmarker},</if>
+            <if test="courNumass != null">cour_numass = #{courNumass},</if>
+            <if test="courTypeass != null">cour_typeass = #{courTypeass},</if>
+            <if test="courMarkerhour != null">cour_markerhour = #{courMarkerhour},</if>
+            <if test="courTutorhour != null">cour_tutorhour = #{courTutorhour},</if>
+            <if test="courMarkerrespon != null">cour_markerrespon = #{courMarkerrespon},</if>
+            <if test="courPrenummarker != null">cour_prenummarker = #{courPrenummarker},</if>
+        </trim>
+        where cour_id = #{courId}
+    </update>
+
+    <delete id="deleteCourseByCourId" parameterType="Long">
+        delete from course where cour_id = #{courId}
+    </delete>
+
+    <delete id="deleteCourseByCourIds" parameterType="String">
+        delete from course where cour_id in 
+        <foreach item="courId" collection="array" open="(" separator="," close=")">
+            #{courId}
+        </foreach>
+    </delete>
+</mapper>
