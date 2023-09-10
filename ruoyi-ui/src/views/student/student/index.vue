@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch"
+             label-width="90px">
       <el-form-item label="学生名字" prop="stuName">
         <el-input
           v-model="queryParams.stuName"
@@ -25,94 +26,15 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="学生邮件" prop="stuEmail">
+<!--      <el-form-item label="学生邮件" prop="stuEmail">
         <el-input
           v-model="queryParams.stuEmail"
           placeholder="请输入学生邮件"
           clearable
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>
-      <el-form-item label="当前是否在海外" prop="stuCurrentOverseas">
-        <el-input
-          v-model="queryParams.stuCurrentOverseas"
-          placeholder="请输入当前是否在海外"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="当前在海外的情况下是否返回NZ" prop="stuCurrentOverseasBacknz">
-        <el-input
-          v-model="queryParams.stuCurrentOverseasBacknz"
-          placeholder="请输入当前在海外的情况下是否返回NZ"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生是否是居民" prop="stuCitizen">
-        <el-input
-          v-model="queryParams.stuCitizen"
-          placeholder="请输入学生是否是居民"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="不是居民的情况下是否有签证" prop="stuCitizenVisa">
-        <el-input
-          v-model="queryParams.stuCitizenVisa"
-          placeholder="请输入不是居民的情况下是否有签证"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生选课细节" prop="stuEnrolmentDetail">
-        <el-input
-          v-model="queryParams.stuEnrolmentDetail"
-          placeholder="请输入学生选课细节"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生学历" prop="stuEducation">
-        <el-input
-          v-model="queryParams.stuEducation"
-          placeholder="请输入学生学历"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="这学期是否有其他合同" prop="stuTaorgta">
-        <el-input
-          v-model="queryParams.stuTaorgta"
-          placeholder="请输入这学期是否有其他合同"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生最大工作时间" prop="stuMaximumWorktime">
-        <el-input
-          v-model="queryParams.stuMaximumWorktime"
-          placeholder="请输入学生最大工作时间"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生学过这门课的成绩" prop="stuGrade">
-        <el-input
-          v-model="queryParams.stuGrade"
-          placeholder="请输入学生学过这门课的成绩"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="学生是否学过这门课" prop="stuStudyed">
-        <el-input
-          v-model="queryParams.stuStudyed"
-          placeholder="请输入学生是否学过这门课"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+      </el-form-item>-->
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -167,27 +89,27 @@
 
     <el-table v-loading="loading" :data="studentList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="${comment}" align="center" prop="stuId" />
+<!--      <el-table-column label="${comment}" align="center" prop="stuId" />-->
       <el-table-column label="学生名字" align="center" prop="stuName" />
       <el-table-column label="学生UPI" align="center" prop="stuUpi" />
       <el-table-column label="学生AUID" align="center" prop="stuAuid" />
       <el-table-column label="学生邮件" align="center" prop="stuEmail" />
-      <el-table-column label="当前是否在海外" align="center" prop="stuCurrentOverseas" />
-      <el-table-column label="当前在海外的情况下是否返回NZ" align="center" prop="stuCurrentOverseasBacknz" />
-      <el-table-column label="学生是否是居民" align="center" prop="stuCitizen" />
-      <el-table-column label="不是居民的情况下是否有签证" align="center" prop="stuCitizenVisa" />
+      <el-table-column label="是否在海外" align="center" prop="stuCurrentOverseas" />
+      <el-table-column label="是否返回NZ" align="center" prop="stuCurrentOverseasBacknz" />
+      <el-table-column label="是否是居民" align="center" prop="stuCitizen" />
+      <el-table-column label="是否有签证" align="center" prop="stuCitizenVisa" />
       <el-table-column label="学生选课细节" align="center" prop="stuEnrolmentDetail" />
       <el-table-column label="学生学历" align="center" prop="stuEducation" />
-      <el-table-column label="这学期是否有其他合同" align="center" prop="stuTaorgta" />
-      <el-table-column label="有其他合同情况下描述合同" align="center" prop="stuTaortgaContracts" />
-      <el-table-column label="学生最大工作时间" align="center" prop="stuMaximumWorktime" />
-      <el-table-column label="学生学过这门课的成绩" align="center" prop="stuGrade" />
+      <el-table-column label="是否有其他合同" align="center" prop="stuTaorgta" />
+      <el-table-column label="描述合同" align="center" prop="stuTaortgaContracts" />
+      <el-table-column label="最大工作时间" align="center" prop="stuMaximumWorktime" />
+<!--      <el-table-column label="学生学过这门课的成绩" align="center" prop="stuGrade" />
       <el-table-column label="学生没学过这门课情况下解释自己为什么有资格" align="center" prop="stuWhyQualify" />
       <el-table-column label="学生的经验" align="center" prop="stuExperience" />
       <el-table-column label="学生申请状态" align="center" prop="stuApplicationStatus" />
       <el-table-column label="学生是否学过这门课" align="center" prop="stuStudyed" />
       <el-table-column label="学生简历" align="center" prop="stuCv" />
-      <el-table-column label="学生学术记录" align="center" prop="stuAr" />
+      <el-table-column label="学生学术记录" align="center" prop="stuAr" />-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -207,7 +129,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -217,69 +139,110 @@
     />
 
     <!-- 添加或修改学生表单上传对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="学生名字" prop="stuName">
-          <el-input v-model="form.stuName" placeholder="请输入学生名字" />
+    <el-dialog :title="title" center  :visible.sync="open" width="75v" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="10v">
+        <el-form-item label="Name" prop="stuName">
+          <el-input v-model="form.stuName" placeholder="Name" />
         </el-form-item>
-        <el-form-item label="学生UPI" prop="stuUpi">
-          <el-input v-model="form.stuUpi" placeholder="请输入学生UPI" />
+        <el-form-item label="UPI" prop="stuUpi">
+          <el-input v-model="form.stuUpi" placeholder="UPI" />
         </el-form-item>
-        <el-form-item label="学生AUID" prop="stuAuid">
-          <el-input v-model="form.stuAuid" placeholder="请输入学生AUID" />
+        <el-form-item label="AUID" prop="stuAuid">
+          <el-input v-model="form.stuAuid" placeholder="AUID" />
         </el-form-item>
-        <el-form-item label="学生邮件" prop="stuEmail">
-          <el-input v-model="form.stuEmail" placeholder="请输入学生邮件" />
+        <el-form-item label="Preferred email" prop="stuEmail">
+          <el-input v-model="form.stuEmail" placeholder="Preferred email" />
         </el-form-item>
-        <el-form-item label="当前是否在海外" prop="stuCurrentOverseas">
-          <el-input v-model="form.stuCurrentOverseas" placeholder="请输入当前是否在海外" />
+        <el-form-item label="Are you current oversea?" prop="stuCurrentOverseas">
+          <el-radio-group v-model="form.stuCurrentOverseas">
+            <el-radio
+              v-for="dict in dict.type.sys_yes_no"
+              :key="dict.value"
+              :label="dict.value"
+            >{{dict.label}}</el-radio>
+          </el-radio-group>
         </el-form-item>
-        <el-form-item label="当前在海外的情况下是否返回NZ" prop="stuCurrentOverseasBacknz">
-          <el-input v-model="form.stuCurrentOverseasBacknz" placeholder="请输入当前在海外的情况下是否返回NZ" />
+        <el-form-item v-if="form.stuCurrentOverseas=='Y'" label="If you are current oversea, will come arrive back in NZ?" prop="stuCurrentOverseasBacknz">
+          <el-input v-model="form.stuCurrentOverseasBacknz" placeholder="If you are current oversea, will come arrive back in NZ?" />
         </el-form-item>
-        <el-form-item label="学生是否是居民" prop="stuCitizen">
-          <el-input v-model="form.stuCitizen" placeholder="请输入学生是否是居民" />
+        <el-form-item label="Are you Citizen or permanent resident?" prop="stuCitizen">
+          <el-radio-group v-model="form.stuCitizen">
+            <el-radio
+              v-for="dict in dict.type.sys_yes_no"
+              :key="dict.value"
+              :label="dict.value"
+            >{{dict.label}}</el-radio>
+          </el-radio-group>
         </el-form-item>
-        <el-form-item label="不是居民的情况下是否有签证" prop="stuCitizenVisa">
-          <el-input v-model="form.stuCitizenVisa" placeholder="请输入不是居民的情况下是否有签证" />
+        <el-form-item  v-if="form.stuCitizen=='N'" label="Does applicant have a valid work visa?" prop="stuCitizenVisa">
+          <el-input v-model="form.stuCitizenVisa" placeholder="does applicant have a valid work visa?" />
         </el-form-item>
-        <el-form-item label="学生选课细节" prop="stuEnrolmentDetail">
-          <el-input v-model="form.stuEnrolmentDetail" placeholder="请输入学生选课细节" />
+        <el-form-item label="Undergraduate/Postgraduate" prop="stuEnrolmentDetail">
+          <el-select v-model="form.stuEnrolmentDetail" placeholder="Undergraduate/Postgraduate">
+            <el-option
+              key="Undergraduate"
+              label="Undergraduate"
+              value="Undergraduate"
+            ></el-option>
+            <el-option
+              key="Postgraduate"
+              label="Postgraduate"
+              value="Postgraduate"
+            ></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="学生学历" prop="stuEducation">
-          <el-input v-model="form.stuEducation" placeholder="请输入学生学历" />
+        <el-form-item label="Degree details for the semester" prop="stuEducation">
+          <el-input v-model="form.stuEducation" placeholder="Degree details for the semester" />
         </el-form-item>
-        <el-form-item label="这学期是否有其他合同" prop="stuTaorgta">
-          <el-input v-model="form.stuTaorgta" placeholder="请输入这学期是否有其他合同" />
+        <el-form-item label="Do you have any other TA/GTA contracts for that semester?" prop="stuTaorgta">
+          <el-radio-group v-model="form.stuTaorgta">
+            <el-radio
+              v-for="dict in dict.type.sys_yes_no"
+              :key="dict.value"
+              :label="dict.value"
+            >{{dict.label}}</el-radio>
+          </el-radio-group>
         </el-form-item>
-        <el-form-item label="有其他合同情况下描述合同" prop="stuTaortgaContracts">
-          <el-input v-model="form.stuTaortgaContracts" type="textarea" placeholder="请输入内容" />
+        <el-form-item v-if="form.stuTaorgta=='Y'" label="Please describe the contracts" prop="stuTaortgaContracts">
+          <el-input v-model="form.stuTaortgaContracts" type="textarea" placeholder="Please describe the contracts" />
         </el-form-item>
-        <el-form-item label="学生最大工作时间" prop="stuMaximumWorktime">
-          <el-input v-model="form.stuMaximumWorktime" placeholder="请输入学生最大工作时间" />
+        <el-form-item label="Do you want to work maximum number of hours for a week?" prop="stuMaximumWorktime">
+          <el-input v-model="form.stuMaximumWorktime" placeholder="Do you want to work maximum number of hours for a week?" />
         </el-form-item>
-        <el-form-item label="学生学过这门课的成绩" prop="stuGrade">
-          <el-input v-model="form.stuGrade" placeholder="请输入学生学过这门课的成绩" />
+        <el-form-item label="The grade do you got when doing the course" prop="stuGrade">
+          <el-radio-group v-model="form.stuGrade">
+            <el-radio key="A+" label="A+">A+</el-radio>
+            <el-radio key="A" label="A">A</el-radio>
+            <el-radio key="A-" label="A-">A-</el-radio>
+            <el-radio key="B+" label="B+">B+</el-radio>
+            <el-radio key="B" label="B">B</el-radio>
+            <el-radio key="B-" label="B-">B-</el-radio>
+            <el-radio key="C+" label="C+">C+</el-radio>
+            <el-radio key="C" label="C">C</el-radio>
+            <el-radio key="C-" label="C-">C-</el-radio>
+            <el-radio key="Failed" label="Failed">Failed</el-radio>
+            <el-radio key="Hasn’t done" label="Hasn’t done">Hasn’t done</el-radio>
+          </el-radio-group>
         </el-form-item>
-        <el-form-item label="学生没学过这门课情况下解释自己为什么有资格" prop="stuWhyQualify">
-          <el-input v-model="form.stuWhyQualify" type="textarea" placeholder="请输入内容" />
+        <el-form-item v-if="form.stuGrade=='Hasn’t done'" label="Explain why you are qualified" prop="stuWhyQualify">
+          <el-input v-model="form.stuWhyQualify" type="textarea" placeholder="Explain why you are qualified:" />
         </el-form-item>
-        <el-form-item label="学生的经验" prop="stuExperience">
-          <el-input v-model="form.stuExperience" type="textarea" placeholder="请输入内容" />
+        <el-form-item label="Relevant previous experience (e.g. has marked/tutored that course before or a similar course overseas）" prop="stuExperience">
+          <el-input v-model="form.stuExperience" type="textarea" placeholder="Relevant previous experience (e.g. has marked/tutored that course before or a similar course overseas）" />
         </el-form-item>
-        <el-form-item label="学生是否学过这门课" prop="stuStudyed">
+<!--        <el-form-item label="学生是否学过这门课" prop="stuStudyed">
           <el-input v-model="form.stuStudyed" placeholder="请输入学生是否学过这门课" />
+        </el-form-item>-->
+        <el-form-item label="Please upload your CV" prop="stuCv">
+          <file-upload v-model="form.stuCv" :file-type=fileType />
         </el-form-item>
-        <el-form-item label="学生简历" prop="stuCv">
-          <file-upload v-model="form.stuCv"/>
-        </el-form-item>
-        <el-form-item label="学生学术记录" prop="stuAr">
-          <file-upload v-model="form.stuAr"/>
+        <el-form-item label="Please upload your Academic record " prop="stuAr">
+          <file-upload v-model="form.stuAr" :file-type=fileType />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">Submit</el-button>
+        <el-button @click="cancel">Cancle</el-button>
       </div>
     </el-dialog>
   </div>
@@ -290,6 +253,7 @@ import { listStudent, getStudent, delStudent, addStudent, updateStudent } from "
 
 export default {
   name: "Student",
+  dicts: ['sys_yes_no'],
   data() {
     return {
       // 遮罩层
@@ -335,34 +299,50 @@ export default {
         stuCv: null,
         stuAr: null
       },
+      fileType:['pdf'],
       // 表单参数
       form: {},
       // 表单校验
       rules: {
         stuName: [
-          { required: true, message: "学生名字不能为空", trigger: "blur" }
+          { required: true, message: "Name not Null", trigger: "blur" }
+        ],
+        stuAuid:[
+          { required: true, message: "AUID not Null", trigger: "blur" }
         ],
         stuUpi: [
-          { required: true, message: "学生UPI不能为空", trigger: "blur" }
+          { required: true, message: "UPI not Null", trigger: "blur" }
         ],
         stuEmail: [
-          { required: true, message: "学生邮件不能为空", trigger: "blur" }
+          { required: true, message: "Email not Null", trigger: "blur" }
+        ],
+        stuCurrentOverseas:[
+          { required: true, message: "Not Null", trigger: "blur" }
+        ],
+        stuCitizen:[
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
         stuEnrolmentDetail: [
-          { required: true, message: "学生选课细节不能为空", trigger: "blur" }
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
         stuEducation: [
-          { required: true, message: "学生学历不能为空", trigger: "blur" }
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
-        stuTaortgaContracts: [
-          { required: true, message: "有其他合同情况下描述合同不能为空", trigger: "blur" }
+        stuTaorgta: [
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
         stuMaximumWorktime: [
-          { required: true, message: "学生最大工作时间不能为空", trigger: "blur" }
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
         stuStudyed: [
-          { required: true, message: "学生是否学过这门课不能为空", trigger: "blur" }
+          { required: true, message: "Not Null", trigger: "blur" }
         ],
+        stuGrade:[
+          { required: true, message: "Not Null", trigger: "blur" }
+        ],
+        stuExperience:[
+          { required: true, message: "Not Null", trigger: "blur" }
+        ]
       }
     };
   },
@@ -431,7 +411,7 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加学生表单上传";
+      this.title = "Application";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -440,7 +420,7 @@ export default {
       getStudent(stuId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改学生表单上传";
+        this.title = "Application";
       });
     },
     /** 提交按钮 */
