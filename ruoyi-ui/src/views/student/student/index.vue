@@ -221,10 +221,10 @@
             <el-radio key="C" label="C">C</el-radio>
             <el-radio key="C-" label="C-">C-</el-radio>
             <el-radio key="Failed" label="Failed">Failed</el-radio>
-            <el-radio key="Hasn’t done" label="Hasn’t done">Hasn’t done</el-radio>
+            <el-radio key="Has not done" label="Has not done">Has not done</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item v-if="form.stuGrade=='Hasn’t done'" label="Explain why you are qualified" prop="stuWhyQualify">
+        <el-form-item v-if="form.stuGrade=='Has not done'" label="Explain why you are qualified" prop="stuWhyQualify">
           <el-input v-model="form.stuWhyQualify" type="textarea" placeholder="Explain why you are qualified:" />
         </el-form-item>
         <el-form-item label="Relevant previous experience (e.g. has marked/tutored that course before or a similar course overseas）" prop="stuExperience">
